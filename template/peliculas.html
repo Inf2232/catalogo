@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %} Peliculas {% endblock %}
+{% block content %}
+<style>
+.peliculas-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.pelicula-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #000;
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background-color: #111314;
+  color: #fffffff3;
+  transition: all 0.2s ease-in-out;
+  height: auto;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.pelicula-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pelicula-item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.pelicula-item img {
+  width: 100%;
+  height: 80%;
+}
+
+
+
+
+</style>
+<div class="peliculas-container">
+    {% for pelicula in peliculas %}
+    <div class="pelicula-item">
+       <a href="/detalles/{{ pelicula.id }}">
+         {% set image_data = pelicula.foto|b64encode %}
+         <img src="data:image/jpeg;base64,{{ image_data }}" alt="{{ pelicula.titulo }}">
+         <h2>{{ pelicula.titulo }}</h2>
+       </a>
+    </div>
+  
+  {% endfor %}
+</div>
+{% endblock %}

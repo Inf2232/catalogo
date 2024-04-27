@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %} Novelas {% endblock %}
+{% block content %}
+<style>
+.novelas-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.novela-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #000;
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background-color: #111314;
+  color: #fffffff3;
+  transition: all 0.2s ease-in-out;
+  height: auto;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.novela-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.novela-item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.novela-item img {
+  width: 100%;
+  height: 80%;
+}
+
+
+
+
+</style>
+<div class="novelas-container">
+    {% for novela in novelas %}
+    <div class="novela-item">
+       <a href="/detalles/{{ novela.id }}">
+         {% set image_data = novela.foto|b64encode %}
+         <img src="data:image/jpeg;base64,{{ image_data }}" alt="{{ novela.titulo }}">
+         <h2>{{ novela.titulo }}</h2>
+       </a>
+    </div>
+
+  {% endfor %}
+</div>
+{% endblock %}
+

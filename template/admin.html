@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% block title %} Series{% endblock %}
+{% block content %}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #021820;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .container {
+      margin: 1%;
+      display: flex;
+      justify-content: space-around;
+      gap: 2rem;
+      color: white;
+
+    }
+
+    .section {
+      width: 30%;
+      padding: 1rem;
+      border: 2px solid #ccc;
+      border-radius: 15px;
+
+    }
+
+    .section-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .list {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .button-container a {
+      padding: 3%;
+      color: yellow;
+      border-radius: 15px;
+      border: 1px solid white;
+
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+    .append {
+      display: flex;
+      justify-content: center;
+
+    }
+    /* Estilos responsivos */
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .section {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+
+  <div class="container">
+  <div class="section">
+  <h2 class="section-header">Películas</h2>
+  <ul class="list">
+  {% for pelicula in peliculas %}
+          <li class="list-item">
+  <a href="/detalles/{{ pelicula.id }}">
+  <span style="color: white;">{{ pelicula.titulo }}</span>
+  </a>
+  <div class="button-container">
+  <a style="background-color: #2a0bd8b9;" href="/exportar"> Exportar</a>
+  <a  style="background-color: red;" href="/eliminar/{{ pelicula.id }}">Eliminar</a>
+  </div>
+  </li>
+  {% endfor %}
+        </ul>
+ 
+  </div>
+  <div class="section">
+    <h2 class="section-header">Series</h2>
+    <ul class="list">
+    {% for serie in series %}
+            <li class="list-item">
+    <a href="/detalles/{{ serie.id }}">
+    <span style="color: white;">{{ serie.titulo }}</span>
+    </a>
+    <div class="button-container">
+    <a style="background-color: #2a0bd8b9;" href="/exportar"> Exportar</a>
+    <a style="background-color: red;"  href="/eliminar/{{ serie.id }}">Eliminar</a>
+    </div>
+    </li>
+    {% endfor %}
+          </ul>
+   
+    </div>
+    <div class="section">
+      <h2 class="section-header">Novelas</h2>
+      <ul class="list">
+      {% for novela in novelas %}
+              <li class="list-item">
+      <a href="/detalles/{{ novela.id }}">
+      <span style="color: white;">{{ novela.titulo }}</span>
+      </a>
+      <div class="button-container">
+      <a style="background-color: #2a0bd8b9;"  href="/exportar"> Exportar</a>
+      <a style="background-color: red;" href="/eliminar/{{ novela.id }}">Eliminar</a>
+      </div>
+      </li>
+      {% endfor %}
+            </ul>
+     
+      </div>
+
+  </div>
+  <div class="append">
+  <a  style="color: rgb(196, 4, 4); background-color: rgb(37, 175, 37); border: 2px solid white; border-radius: 15px; padding: 1%;margin: 1%;" href="/agregar">Agregar al catalogo</a>
+  </div>
+  {% endblock %}

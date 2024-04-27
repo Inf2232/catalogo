@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %} Detalles de la Película {% endblock %}
+
+{% block content %}
+<style>
+    body {
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+        background-color: rgba(22, 21, 21, 0.849);
+    }
+
+    .pelicula-detalle-container {
+        background-color: rgba(22, 21, 21, 0.849);
+        color: #ff0202f3;
+        max-width: 800px;
+        width: 100%;
+        padding: 20px;
+        border: 1px solid #dbdf06;
+        border-radius: 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .pelicula-info {
+        border: 2px solid black;
+        border-radius: 15px;
+        background-color: rgba(22, 21, 21, 0.849);
+        display: flex ;
+        align-items: center;
+        padding: 3%;
+    }
+
+    .pelicula-info img {
+
+        width: 200px; /* Ajusta el tamaño de la imagen */
+        height: auto;
+        margin-right: 25px; /* Espacio entre la imagen y los detalles */
+    }
+
+    .pelicula-details {
+        text-align: center; 
+    }
+
+    .pelicula-details h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .pelicula-details p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    /* Estilos responsivos */
+    @media (max-width: 768px) {
+        .pelicula-info {
+            flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+        }
+
+        .pelicula-info img {
+            width: 50%; /* Ajusta el tamaño de la imagen para pantallas pequeñas */
+            height: 50%;
+            margin-bottom: 20px; /* Espacio entre la imagen y los detalles en pantallas pequeñas */
+        }
+
+        .pelicula-detalle-container {
+            padding: 15px;
+        }
+
+        .pelicula-details h2,
+        .pelicula-details p {
+            font-size: 14px;
+        }
+    }
+</style> 
+<div class="pelicula-detalle-container">
+<div class="pelicula-info">
+<img src="data:image/jpeg;base64,{{ media.foto|b64encode }}" alt="{{ media.titulo }}" class="pelicula-imagen">
+<div class="pelicula-details">
+<h2>{{ media.titulo }}</h2>
+<h2 style="color: orange;">Año de estreno :</h2>
+<p>{{ media.fecha_salida }}</p>
+<h2 style="color: orange;"> Descripción :</h2>
+<p>{{ media.descripcion }}</p>
+</div>
+</div>
+</div>
+{% endblock %}
+
+
